@@ -1,0 +1,22 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Datasets and generated artifacts — large, and INCLUDE has its own license.
+# Never commit raw videos (they also contain people's faces).
+training/data/
+training/outputs/
+
+# Secrets — never commit (see Phase 6)
+*.jks
+*.keystore
+keystore.properties
+local.properties
+.env
+
+# OS / IDE
+.DS_Store
+.idea/
+*.iml

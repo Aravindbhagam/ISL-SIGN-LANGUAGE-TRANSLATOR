@@ -1,0 +1,27 @@
+# Pinned so every machine (my laptop, CI, an interviewer's laptop) resolves
+# the exact same versions. Tested with Python 3.11 (64-bit).
+#
+# Compatibility constraints that drove these pins:
+#   - mediapipe 0.10.21 still ships the legacy `mp.solutions.holistic` API
+#     (removed in later releases) and requires numpy < 2 and protobuf < 5.
+#   - tensorflow 2.17 supports Python 3.9-3.12 and protobuf < 5.
+
+# --- ML / training ---
+tensorflow==2.17.1
+numpy==1.26.4
+scikit-learn==1.5.2
+
+# --- Landmark extraction ---
+mediapipe==0.10.21
+# mediapipe already depends on opencv-contrib-python; do NOT also install
+# opencv-python — two OpenCV wheels in one env overwrite each other's cv2.
+opencv-contrib-python==4.10.0.84
+protobuf==4.25.5
+
+# --- Utilities ---
+pyyaml==6.0.2
+matplotlib==3.9.2
+tqdm==4.66.5
+
+# --- Testing ---
+pytest==8.3.3

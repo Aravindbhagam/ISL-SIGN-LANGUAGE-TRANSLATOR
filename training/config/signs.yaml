@@ -1,0 +1,40 @@
+# The vocabulary for v1. This file is the single source of truth for which
+# signs exist; the app's label list is generated from it later (step 1.7).
+#
+# Each entry:
+#   name:    folder name under data/raw/ and the label the app shows.
+#            lowercase_with_underscores, never renamed once training starts.
+#   include: the exact INCLUDE folder label(s) to import, WITHOUT the leading
+#            number (e.g. folder "48. Hello" -> "Hello"). Omit (or []) for
+#            signs you only record yourself.
+#
+# DRAFT: fill in the `include:` labels after running
+#   python training/scripts/organize_include.py --list
+# so we only use labels that really exist in your download.
+
+signs:
+  - name: hello
+    include: []
+  - name: thank_you
+    include: []
+  - name: help
+    include: []
+  - name: water
+    include: []
+  - name: doctor
+    include: []
+  - name: "yes"         # quoted: bare yes/no are parsed by YAML as booleans
+    include: []
+  - name: "no"
+    include: []
+  # "No sign" class: hands visible but not signing (resting, scratching,
+  # adjusting glasses). Without it the model MUST pick one of the real
+  # signs for every window, and the app would print words constantly.
+  - name: idle
+    include: []
+
+# Clips per sign you record yourself with record_clips.py
+record:
+  clips_per_sign: 20
+  clip_seconds: 3.0
+  countdown_seconds: 2.0

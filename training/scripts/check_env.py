@@ -4,6 +4,7 @@ Run from the repo root:  python training/scripts/check_env.py
 Exits non-zero if anything is wrong, so CI can use it later too.
 """
 
+import platform
 import sys
 
 REQUIRED_PYTHON = (3, 11)
@@ -17,6 +18,12 @@ def main() -> int:
         ok = False
     else:
         print(f"[ OK ] Python {sys.version.split()[0]}")
+
+    # On Apple Silicon, an x86_64 Python (e.g. an old Intel Homebrew under
+    # Rosetta) runs everything through emulation, which is slow and flaky.
+    if platform.system() == "Darwin" and platform.machine() != "arm64":
+        print(f"[FAIL] Python is {platform.machine()}; use a native arm64 Python on Apple Silicon")
+        ok = False
 
     import cv2
     import matplotlib
